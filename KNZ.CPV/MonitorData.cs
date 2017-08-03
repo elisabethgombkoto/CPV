@@ -14,6 +14,20 @@ namespace KNZ.CPV
        
         public MonitorData()
         {
+            this.Rectangles = new List<RectangleDatas>();
+            for (int i = 0; i < 1; i++)
+            {
+                RectangleDatas rad = new RectangleDatas();
+
+                rad.X1 = 0;
+                rad.Y1 = 0;
+                rad.X2 = 1000;
+                rad.Y2 = 1000;
+                Rectangles.Add(rad);
+            }
+
+
+            /*
             double random = new Random().NextDouble();
            double r = new Random().NextDouble();
             
@@ -73,6 +87,7 @@ namespace KNZ.CPV
                 lins.Y2 = r + random;
                 LineSegments.Add(lins);
             }
+            */
         }
 
     }

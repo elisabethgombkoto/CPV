@@ -17,8 +17,9 @@ namespace KNZ.CPV
         {
             InitializeComponent();
             DataController mdc = new DataController();
-            VisualizationController visualizationController = new VisualizationController(mdc);
-            _vm = new VisualizationViewModel(Canvas, visualizationController);
+            Calculator calculator = new Calculator();
+            VisualizationController visualizationController = new VisualizationController(mdc, calculator);
+            _vm = new VisualizationViewModel(Canvas, visualizationController );
             DataContext = _vm;
         }
 

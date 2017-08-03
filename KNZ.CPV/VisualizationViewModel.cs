@@ -14,12 +14,13 @@ namespace KNZ.CPV
     internal class VisualizationViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public VisualizationController _visualizationController;
+        public Canvas MyCanvas { get; }
 
+        private VisualizationController _visualizationController;
         private DispatcherTimer _dispatchedTimer;
         private ImageSource _BGImage = new BitmapImage(new Uri(@"C:\Users\Admin\Documents\Visual Studio 2017\Projects\VisualizationTool\pic.png", UriKind.Absolute));
-
-        public Canvas MyCanvas { get; }
+  
+       
         private bool _hasTimerStared;
         private bool HasTimerStarted
         {
@@ -85,7 +86,7 @@ namespace KNZ.CPV
             }
         }
 
-
+     
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -93,8 +94,10 @@ namespace KNZ.CPV
 
         public void Draw()
         {
-            _visualizationController.DrawShapesOnCanvas(MyCanvas, _BGImage.Width, _BGImage.Height);
-            //_visualizationController.DrawShapesOnCanvas(MyCanvas);            
+            //AddProp();
+            AddCanvas();
+            //hack I do not like
+            _visualizationController.DrawShapesOnCanvas(MyCanvas);            
         }
         private void ExecuteStartVisualisingCommand()
         {
@@ -117,6 +120,16 @@ namespace KNZ.CPV
         {
             return HasTimerStarted;
         }
-        
+
+        public void AddProp()
+        {
+            _visualizationController.CC.Width = _BGImage.Width;
+            _visualizationController.CC.Height = _BGImage.Height;
+        }
+        public void AddCanvas()
+        {
+            _visualizationController.CC.Width = MyCanvas.ActualWidth;
+            _visualizationController.CC.Height = MyCanvas.ActualHeight;
+        }
     }
 }

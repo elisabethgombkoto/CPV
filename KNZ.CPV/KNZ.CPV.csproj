@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Calculator.cs" />
     <Compile Include="CapsuleCalculatedDatas.cs" />
     <Compile Include="CircleCalculatedDatas.cs" />
     <Compile Include="Datas.cs" />
