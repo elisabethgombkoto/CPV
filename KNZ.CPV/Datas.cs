@@ -11,6 +11,7 @@
         public double Y1 { get; set; }
         public double Y2 { get; set; }
 
+
         public RectangleDatas() { }
         public RectangleDatas(double x1, double y1, double x2, double y2)
         {
