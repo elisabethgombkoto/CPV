@@ -20,8 +20,7 @@ namespace KNZ.CPV
         internal void DrawOnMyCanvas(LineSegmentCalculatedDatas calculatedDatas, Canvas myCanvas)
         {
             UIElement uiElement = Create(calculatedDatas);
-            Canvas.SetTop(uiElement, calculatedDatas.Top);
-            Canvas.SetLeft(uiElement, calculatedDatas.Left);
+           
 
             myCanvas.Children.Add(uiElement);
         }
@@ -31,13 +30,17 @@ namespace KNZ.CPV
             Line line = new Line()
             {
                 X1 = calculatedDatas.X1,
+                
                 Y1 = calculatedDatas.Y1,
                 X2 = calculatedDatas.X2,
                 Y2 = calculatedDatas.Y2,
                 Stroke = Brushes.Black,
                 StrokeThickness = this.StrokeThickness = 2
-            };           
-
+            };
+            Console.WriteLine("X1: " + line.X1 + " Y1: " + line.Y1);
+          
+            Console.WriteLine("X2: " + line.X2 + " Y2: " + line.Y2);
+            
             return line;
         }
 

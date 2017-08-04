@@ -17,7 +17,7 @@ namespace KNZ.CPV
         internal void DrawOnMyCanvas(CircleCalculatedDatas calculatedDatas, Canvas myCanvas)
         {
             UIElement uiElement = Create(calculatedDatas);
-            Canvas.SetTop(uiElement, calculatedDatas.Top);
+            Canvas.SetBottom(uiElement, calculatedDatas.Bottom);
             Canvas.SetLeft(uiElement, calculatedDatas.Left);
 
             myCanvas.Children.Add(uiElement);

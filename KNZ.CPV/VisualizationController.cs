@@ -26,11 +26,11 @@ namespace KNZ.CPV
         
         public void DrawShapesOnCanvas(Canvas myCanvas)
         {
-           // DrawLineSegments(myCanvas);
+            DrawLineSegments(myCanvas);
             DrawRectangels(myCanvas);
-           // DrawTarget(myCanvas);
-           // DrawCircles(myCanvas);
-            //DrawCapsules(myCanvas);            
+            //DrawTarget(myCanvas);
+            DrawCircles(myCanvas);
+            DrawCapsules(myCanvas);            
             
         }
 
@@ -97,7 +97,6 @@ namespace KNZ.CPV
 
         private void DrawTarget(TargetCalculatedDatas calculated, Canvas myCanvas, int level)
         {
-            
             new MyTarget().DrawOnMyCanvas(calculated,  myCanvas);
         }
 

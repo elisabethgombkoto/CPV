@@ -28,29 +28,36 @@ namespace KNZ.CPV
             
             double width = Math.Abs(relativeX2 - relativeX1);
             double height = Math.Abs(relativeY2 - relativeY1);
-            double top = Math.Min(relativeY1, relativeY2);
+            double bottom = Math.Min(relativeY1, relativeY2);
             double left = Math.Min(relativeX1, relativeX2);
 
-            return new RectangleCalculatedDatas(width,height,top,left);
+            return new RectangleCalculatedDatas(width,height,bottom,left);
+        }
+        //TODO not working properly 
+        internal LineSegmentCalculatedDatas CalculateLineDatas(LineSegmentDatas datas)
+        {
+            double relativeX1 = (Width / _workspaceWidth) * datas.X1;
+            double relativeX2 = (Width / _workspaceWidth) * datas.X2;
+            double relativeY1 = ((_workspaceHeight- datas.Y1) / _workspaceHeight) * Height;
+            double relativeY2 = ((_workspaceHeight - datas.Y2) / _workspaceHeight) * Height;
+
+            return new LineSegmentCalculatedDatas(relativeX1, relativeY1, relativeX2, relativeY2);
         }
 
-        internal LineSegmentCalculatedDatas CalculateLineDatas(LineSegmentDatas datas)
+        internal CapsuleCalculatedDatas CalculateCapsuleDatas(CapsuleDatas datas)
         {
             double relativeX1 = Width / _workspaceWidth * datas.X1;
             double relativeX2 = Width / _workspaceWidth * datas.X2;
             double relativeY1 = Height / _workspaceHeight * datas.Y1;
             double relativeY2 = Height / _workspaceHeight * datas.Y2;
+            double relativeR = (datas.R * Height) / _workspaceHeight;
 
+            double width = Math.Abs(relativeX2 - relativeX1) + 2 * relativeR;
+            double height = 2 * relativeR;
+            double bottom = Math.Min(relativeY1, relativeY2) - relativeR;
+            double left = Math.Min(relativeX1, relativeX2) - relativeR;
            
-            double top = Math.Min(relativeY1, relativeY2);
-            double left = Math.Min(relativeX1, relativeX2);
-
-            return new LineSegmentCalculatedDatas(relativeX1, relativeY1, relativeX2, relativeY2, top, left);
-        }
-
-        internal CapsuleCalculatedDatas CalculateCapsuleDatas(CapsuleDatas datas)
-        {
-            throw new NotImplementedException();
+            return new CapsuleCalculatedDatas(width,height,bottom,left);
         }
 
         internal CircleCalculatedDatas CalculateCircleDatas(CircleDatas datas)
@@ -62,9 +69,9 @@ namespace KNZ.CPV
             double width = 2 * relativeR;
             double height = 2 * relativeR;
             double left = relativeX - relativeR;
-            double top = relativeY - relativeR;
+            double bottom = relativeY - relativeR;
 
-            return new CircleCalculatedDatas(width, height, top, left);
+            return new CircleCalculatedDatas(width, height, bottom, left);
         }
 
         internal TargetCalculatedDatas CalculateTargetDatas(TargetDatas d)

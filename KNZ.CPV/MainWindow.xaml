@@ -14,7 +14,7 @@
         </StackPanel>
         
         <ScrollViewer Name="ScrollViewer"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" >
-            <Canvas Name="Canvas" Width="450" Height="260"   MouseWheel="Canvas_MouseWheel">
+            <Canvas Name="Canvas" Width="200" Height="200"   MouseWheel="Canvas_MouseWheel">
                 <Canvas.Background>
                     <ImageBrush ImageSource="{Binding BGImage}"/>
                 </Canvas.Background>

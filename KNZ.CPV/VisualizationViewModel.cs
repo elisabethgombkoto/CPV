@@ -94,11 +94,16 @@ namespace KNZ.CPV
 
         public void Draw()
         {
-            //AddProp();
             AddCanvas();
-            //hack I do not like
             _visualizationController.DrawShapesOnCanvas(MyCanvas);            
         }
+
+        private void AddCanvas()
+        {
+            _visualizationController.CC.Width = MyCanvas.ActualWidth;
+            _visualizationController.CC.Height = MyCanvas.ActualHeight;
+        }
+
         private void ExecuteStartVisualisingCommand()
         {
             _dispatchedTimer.Start();
@@ -121,15 +126,6 @@ namespace KNZ.CPV
             return HasTimerStarted;
         }
 
-        public void AddProp()
-        {
-            _visualizationController.CC.Width = _BGImage.Width;
-            _visualizationController.CC.Height = _BGImage.Height;
-        }
-        public void AddCanvas()
-        {
-            _visualizationController.CC.Width = MyCanvas.ActualWidth;
-            _visualizationController.CC.Height = MyCanvas.ActualHeight;
-        }
+       
     }
 }
