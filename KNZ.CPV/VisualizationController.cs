@@ -28,7 +28,7 @@ namespace KNZ.CPV
         {
             DrawLineSegments(myCanvas);
             DrawRectangels(myCanvas);
-            //DrawTarget(myCanvas);
+            DrawTarget(myCanvas);
             DrawCircles(myCanvas);
             DrawCapsules(myCanvas);            
             
@@ -76,26 +76,25 @@ namespace KNZ.CPV
 
         private void DrawTarget(Canvas myCanvas)
         {
-            int level = 10;
+            int level = 3;
             List<TargetDatas> targets = _mdc.GetAllShapeParameter().Targets;
             foreach (TargetDatas datas in targets)
             {
                 TargetDatas d = datas;
                 TargetCalculatedDatas calculated = CC.CalculateTargetDatas(d);
-                DrawTarget(calculated, myCanvas, level);
-                if (level > 0)
+                DrawTargetRec(calculated, myCanvas, level);
+                while (level > 0)
                 {
                     level = level - 1;
-                    d.R = d.R * 0.3;
+                    d.R = d.R - (d.R*0.3);
                     calculated = CC.CalculateTargetDatas(d);
-                    DrawTarget(calculated, myCanvas, level);
+                    DrawTargetRec(calculated, myCanvas, level);
                 }  
             }
         }
+               
 
-        
-
-        private void DrawTarget(TargetCalculatedDatas calculated, Canvas myCanvas, int level)
+        private void DrawTargetRec(TargetCalculatedDatas calculated, Canvas myCanvas, int level)
         {
             new MyTarget().DrawOnMyCanvas(calculated,  myCanvas);
         }

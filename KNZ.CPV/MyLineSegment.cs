@@ -37,9 +37,6 @@ namespace KNZ.CPV
                 Stroke = Brushes.Black,
                 StrokeThickness = this.StrokeThickness = 2
             };
-            Console.WriteLine("X1: " + line.X1 + " Y1: " + line.Y1);
-          
-            Console.WriteLine("X2: " + line.X2 + " Y2: " + line.Y2);
             
             return line;
         }

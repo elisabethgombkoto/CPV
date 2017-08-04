@@ -74,9 +74,18 @@ namespace KNZ.CPV
             return new CircleCalculatedDatas(width, height, bottom, left);
         }
 
-        internal TargetCalculatedDatas CalculateTargetDatas(TargetDatas d)
+        internal TargetCalculatedDatas CalculateTargetDatas(TargetDatas datas)
         {
-            throw new NotImplementedException();
+            double relativeX = Width / _workspaceWidth * datas.X;
+            double relativeY = Height / _workspaceHeight  * datas.Y;
+            double relativeR = (datas.R * Height) / _workspaceHeight;
+
+            double width = 2 * relativeR;
+            double height = 2 * relativeR;
+            double left = relativeX - relativeR;
+            double bottom = relativeY - relativeR;
+
+            return new TargetCalculatedDatas(width, height, bottom, left); 
         }
     }
 }

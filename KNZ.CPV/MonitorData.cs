@@ -74,13 +74,13 @@ namespace KNZ.CPV
             }
 
             this.Targets = new List<TargetDatas>();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 1; i++)
             {
                 TargetDatas tar = new TargetDatas();
 
-                tar.X = 20;
-                tar.Y = 30;
-                tar.R = 20;
+                tar.X = 200;
+                tar.Y = 300;
+                tar.R = 100;
                 Targets.Add(tar);
             }
 
