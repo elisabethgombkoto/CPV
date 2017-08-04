@@ -33,7 +33,7 @@ namespace KNZ.CPV
 
             return new RectangleCalculatedDatas(width,height,bottom,left);
         }
-        //TODO not working properly 
+     
         internal LineSegmentCalculatedDatas CalculateLineDatas(LineSegmentDatas datas)
         {
             double relativeX1 = (Width / _workspaceWidth) * datas.X1;

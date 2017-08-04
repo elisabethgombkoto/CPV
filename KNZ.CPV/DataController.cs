@@ -4,9 +4,13 @@ namespace KNZ.CPV
 {
     public class DataController
     {
+        int moving = 0;
         public MonitorData GetAllShapeParameter()
         {
-            return new MonitorData();
+            MonitorData md = new MonitorData(moving);
+            moving++;
+            return md;
+               
         }
         
     }

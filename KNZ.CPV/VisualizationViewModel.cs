@@ -66,7 +66,7 @@ namespace KNZ.CPV
             MyCanvas = canvas;
             _visualizationController = visualizationController;
             _dispatchedTimer = new DispatcherTimer();
-            _dispatchedTimer.Interval = TimeSpan.FromSeconds(1);
+            _dispatchedTimer.Interval = TimeSpan.FromMilliseconds(1);
             _dispatchedTimer.Tick += (object s, System.EventArgs e) =>
             {
                 Draw();
@@ -94,10 +94,13 @@ namespace KNZ.CPV
 
         public void Draw()
         {
+           //TODO This is hacking, must be solved diffrently
             AddCanvas();
             _visualizationController.DrawShapesOnCanvas(MyCanvas);            
         }
-
+        /// <summary>
+        /// hacking 
+        /// </summary>
         private void AddCanvas()
         {
             _visualizationController.CC.Width = MyCanvas.ActualWidth;

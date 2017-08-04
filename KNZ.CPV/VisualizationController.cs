@@ -13,25 +13,28 @@ namespace KNZ.CPV
     {
         private DataController _mdc;
         public Calculator CC { get; set; }
+
         public VisualizationController(DataController mdc, Calculator cc)
         {
             _mdc = mdc;
             CC = cc;
         }
+
         public VisualizationController(DataController mdc)
         {
             _mdc = mdc;
         }
-       
-        
+
         public void DrawShapesOnCanvas(Canvas myCanvas)
         {
+            myCanvas.Children.Clear();
+          
             DrawLineSegments(myCanvas);
             DrawRectangels(myCanvas);
             DrawTarget(myCanvas);
             DrawCircles(myCanvas);
-            DrawCapsules(myCanvas);            
-            
+            DrawCapsules(myCanvas);
+
         }
 
         private void DrawRectangels(Canvas myCanvas)
@@ -92,69 +95,10 @@ namespace KNZ.CPV
                 }  
             }
         }
-               
-
+        
         private void DrawTargetRec(TargetCalculatedDatas calculated, Canvas myCanvas, int level)
         {
-            new MyTarget().DrawOnMyCanvas(calculated,  myCanvas);
+            new MyTarget().DrawOnMyCanvas(calculated, myCanvas);
         }
-
-
-        
-
-        /*
-        private void DrawTarget(Canvas myCanvas)
-        {
-            List<TargetDatas> targets = _mdc.GetAllShapeParameter().Targets;
-            foreach(TargetDatas datas in targets)
-            {
-                DrawTarget(datas.R, datas.X, datas.Y, myCanvas);
-            }
-        }
-
-        private void DrawTarget(double r, double x, double y, Canvas myCanvas)
-        {
-            int v = 8;
-            new MyTarget().DrawTargetOnCanvas(r, x, y, myCanvas, v);
-        }
-
-       
-
-        private void DrawCircles(Canvas myCanvas)
-        {
-            List<CircleDatas> circles = _mdc.GetAllShapeParameter().Circles;
-            foreach(CircleDatas datas in circles)
-            {
-                new MyCircle().DrawOnMyCanvas(datas, myCanvas);
-            }
-        }
-
-        private void DrawCapsules(Canvas myCanvas)
-        {
-            List<CapsuleDatas> capsules = _mdc.GetAllShapeParameter().Capsules;
-            foreach(CapsuleDatas datas in capsules)
-            {
-                new MyCapsule().DrawOnMyCanvas(datas, myCanvas);
-            }
-        }
-        
-        private void DrawLineSegments(Canvas myCanvas)
-        {
-            List<LineSegmentDatas> linesegments = _mdc.GetAllShapeParameter().LineSegments;
-            foreach (LineSegmentDatas datas in linesegments)
-            {
-                new MyLineSegment().DrawOnMyCanvas(datas, myCanvas);
-            }
-        }
-
-        private void DrawRectangels (Canvas myCanvas)
-        {   
-            List <RectangleDatas> rectangles = _mdc.GetAllShapeParameter().Rectangles;            
-            foreach(RectangleDatas datas in rectangles)
-            {
-                new MyRectangle().DrawOnMyCanvas(datas, myCanvas);
-            }  
-        }  
-        */
     }
 }

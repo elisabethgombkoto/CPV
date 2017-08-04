@@ -17,14 +17,20 @@ namespace KNZ.CPV
         {
             InitializeComponent();
             DataController mdc = new DataController();
-            //Calculator calculator = new Calculator(Canvas);
+            //TODO It should be so that Calculator know the Canvas, it did not work
+            //Calculator calculator = new Calculator(Canvas); 
             Calculator calculator = new Calculator();
             VisualizationController visualizationController = new VisualizationController(mdc, calculator);
             _vm = new VisualizationViewModel(Canvas, visualizationController );
             DataContext = _vm;
         }
 
-
+        /// <summary>
+        /// It escalates/zooms into and out from the canvas with the help of the mouse wheel.
+        /// It happens at the position of the mouse.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             var element = sender as UIElement;
@@ -36,7 +42,7 @@ namespace KNZ.CPV
             matrix.ScaleAtPrepend(scale, scale, position.X, position.Y);
             transform.Matrix = matrix;
         }
-
+        /*
         private Point _last;
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
@@ -63,6 +69,6 @@ namespace KNZ.CPV
             }
             base.OnMouseMove(e);
         }
-       
+       */
     }
 }

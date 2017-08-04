@@ -19,9 +19,7 @@ namespace KNZ.CPV
         //könnte man abstrachieren
         internal void DrawOnMyCanvas(LineSegmentCalculatedDatas calculatedDatas, Canvas myCanvas)
         {
-            UIElement uiElement = Create(calculatedDatas);
-           
-
+            UIElement uiElement = Create(calculatedDatas);  
             myCanvas.Children.Add(uiElement);
         }
 
@@ -29,8 +27,7 @@ namespace KNZ.CPV
         {
             Line line = new Line()
             {
-                X1 = calculatedDatas.X1,
-                
+                X1 = calculatedDatas.X1,                
                 Y1 = calculatedDatas.Y1,
                 X2 = calculatedDatas.X2,
                 Y2 = calculatedDatas.Y2,
@@ -46,35 +43,7 @@ namespace KNZ.CPV
 
 
 
-        /*
-                protected override double CalculateDistanceToSideEdge(LineSegmentDatas datas)
-                {
-                    return CalculateXb(datas.X1);
-                }
-
-                protected override double CalculateDistanceToUperEdge(LineSegmentDatas datas)
-                {
-                    return CalculateYb(datas.Y1);
-                }
-
-                protected override UIElement Create(LineSegmentDatas datas)
-                {
-
-                    Line line = new Line()
-                    {
-                        X1 = CalculateXb(datas.X1),
-                        Y1 = CalculateYb(datas.Y1),
-                        X2 = CalculateXb(datas.X2),
-                        Y2 = CalculateYb(datas.Y2),
-                        Stroke = Brushes.Black,
-                        StrokeThickness = this.StrokeThickness = 2
-                    };
-
-
-                    return line;
-                }
-
-               */
+       
 
 
         /*
