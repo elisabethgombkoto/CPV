@@ -33,6 +33,11 @@ namespace KNZ.CPV
             double rad1X2 = 400;
             double rad1Y2 = 750;
 
+            double recX1 = 700;
+            double recY1 = 600;
+            double recX2 = 800;
+            double recY2 = 700;
+
             trollyX1 = trollyX1 - moving;
             trollyY1 = trollyY1 - moving;
             trollyX2 = trollyX2 - moving;
@@ -54,6 +59,12 @@ namespace KNZ.CPV
             rad1.Y2 = rad1Y2;
             Rectangles.Add(rad1);
 
+            RectangleDatas rec = new RectangleDatas();
+            rec.X1 = recX1;
+            rec.Y1 = recY1;
+            rec.X2 = recX2;
+            rec.Y2 = recY2;
+            Rectangles.Add(rec);
 
             this.Circles = new List<CircleDatas>();
             CircleDatas cir = new CircleDatas();
@@ -107,8 +118,15 @@ namespace KNZ.CPV
             cap.R = 100;
             Capsules.Add(cap);
 
+            CapsuleDatas cap1 = new CapsuleDatas();
+            cap1.X1 = 750;
+            cap1.Y1 = 650;
+            cap1.X2 = 750;
+            cap1.Y2 = 650;
+            cap1.R = 75;
+            Capsules.Add(cap1);
 
-           
+
         }
 
     }

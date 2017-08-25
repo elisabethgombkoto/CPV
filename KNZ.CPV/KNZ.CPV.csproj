@@ -97,8 +97,8 @@
     <Compile Include="RectangleCalculatedDatas.cs" />
     <Compile Include="TargetCalculatedDatas.cs" />
     <Compile Include="VisualizationController.cs" />
-    <Compile Include="VisualizationViewModel.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModels\VisualizationViewModel.cs" />
+    <Page Include="Views\VisualizationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,8 +106,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\VisualizationView.xaml.cs">
+      <DependentUpon>VisualizationView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

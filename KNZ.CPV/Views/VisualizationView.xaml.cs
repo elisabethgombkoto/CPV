@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace KNZ.CPV
+namespace KNZ.CPV.Views
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml

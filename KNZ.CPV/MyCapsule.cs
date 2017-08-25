@@ -30,8 +30,8 @@ namespace KNZ.CPV
                 Width = calculatedDatas.Width,
                 Height = calculatedDatas.Height,
                 StrokeThickness = this.StrokeThickness = 1,
-                RadiusX = 10.00,
-                RadiusY = 10.00,
+                RadiusX = 80.00,
+                RadiusY = 80.00,
                 Stroke = Brushes.Green
             };
 
