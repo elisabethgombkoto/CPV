@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace KNZ.CPV.ViewModels
+namespace KNZ.CPV
 {
     internal class VisualizationViewModel : INotifyPropertyChanged
     {

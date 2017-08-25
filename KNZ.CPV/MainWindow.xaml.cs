@@ -1,10 +1,11 @@
-﻿using System;
+﻿using KNZ.CPV;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace KNZ.CPV.Views
+namespace KNZ.CPV
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
