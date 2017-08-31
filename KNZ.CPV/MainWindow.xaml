@@ -14,13 +14,11 @@
         </StackPanel>
         
         <ScrollViewer Name="ScrollViewer"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" >
-            <Canvas Name="Canvas" Width="723" Height="649"   MouseWheel="Canvas_MouseWheel">
+            <Canvas Name="Canvas" Width="723" Height="649" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove" MouseWheel="Canvas_MouseWheel">
                 <Canvas.Background>
                     <ImageBrush ImageSource="{Binding BGImage}"/>
                 </Canvas.Background>
-                <Canvas.RenderTransform>
-                    <MatrixTransform x:Name="mt"/>
-                </Canvas.RenderTransform>
+               
             </Canvas>          
         </ScrollViewer>
     </Grid>

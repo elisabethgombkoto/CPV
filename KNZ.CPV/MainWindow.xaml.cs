@@ -14,6 +14,13 @@ namespace KNZ.CPV
     {
         private VisualizationViewModel _vm;
 
+
+        private Point _pointOnClick; // Click Position for panning
+        private ScaleTransform _scaleTransform;
+        private TranslateTransform _translateTransform;
+        private TransformGroup _transformGroup;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -23,53 +30,79 @@ namespace KNZ.CPV
             Calculator calculator = new Calculator();
             VisualizationController visualizationController = new VisualizationController(mdc, calculator);
             _vm = new VisualizationViewModel(Canvas, visualizationController );
+
+
+            _translateTransform = new TranslateTransform();
+            _scaleTransform = new ScaleTransform();
+            _transformGroup = new TransformGroup();
+            _transformGroup.Children.Add(_scaleTransform);
+            _transformGroup.Children.Add(_translateTransform);
+            
+
+            Canvas.RenderTransform = _transformGroup;
             DataContext = _vm;
         }
 
-        /// <summary>
-        /// It escalates/zooms into and out from the canvas with the help of the mouse wheel.
-        /// It happens at the position of the mouse.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Capture Mouse
+            Canvas.CaptureMouse();
+            //Store click position relation to Parent of the canvas
+            _pointOnClick = e.GetPosition((FrameworkElement)Canvas.Parent);
+        }
+
+        private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //Release Mouse Capture
+            Canvas.ReleaseMouseCapture();
+            //Set cursor by default
+            Mouse.OverrideCursor = null;
+        }
+
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+           
+            //Return if mouse is not captured
+            if (!Canvas.IsMouseCaptured) return;
+            //Point on move from Parent
+            Point pointOnMove = e.GetPosition((FrameworkElement)Canvas.Parent);
+            //set TranslateTransform
+            _translateTransform.X = Canvas.RenderTransform.Value.OffsetX - (_pointOnClick.X - pointOnMove.X);
+            _translateTransform.Y = Canvas.RenderTransform.Value.OffsetY - (_pointOnClick.Y - pointOnMove.Y);
+            //Update pointOnClic
+            _pointOnClick = e.GetPosition((FrameworkElement)Canvas.Parent);
+        }
+
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            var element = sender as UIElement;
-            var position = e.GetPosition(element);
-            var transform = element.RenderTransform as MatrixTransform;
-            var matrix = transform.Matrix;
-            var scale = e.Delta >= 0 ? 1.1 : (1.0 / 1.1); // choose appropriate scaling factor
-
-            matrix.ScaleAtPrepend(scale, scale, position.X, position.Y);
-            transform.Matrix = matrix;
-        }
-        /*
-        private Point _last;
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            CaptureMouse();
-            _last = e.GetPosition(Canvas);
-            base.OnMouseLeftButtonDown(e);
+            //Point de la souris
+            Point mousePosition = e.GetPosition(Canvas);
+            //Actual Zoom
+            double zoomNow = Math.Round(Canvas.RenderTransform.Value.M11, 1);
+            //ZoomScale
+            double zoomScale = 0.1;
+            //Positive or negative zoom
+            double valZoom = e.Delta > 0 ? zoomScale : -zoomScale;
+            //Point de la souris pour le panning et zoom/dezoom
+            Point pointOnMove = e.GetPosition((FrameworkElement)Canvas.Parent);
+            //RenderTransformOrigin (doesn't fully working)
+            Canvas.RenderTransformOrigin = new Point(mousePosition.X / Canvas.ActualWidth, mousePosition.Y / Canvas.ActualHeight);
+            //Appel du zoom
+            Zoom(new Point(mousePosition.X, mousePosition.Y), zoomNow + valZoom);
         }
 
-        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+        /// Zoom function
+        private void Zoom(Point point, double scale)
         {
-            ReleaseMouseCapture();
-            base.OnMouseLeftButtonUp(e);
+            //Calcul des centres selon la position de la souris
+            double centerX = (point.X - _translateTransform.X) / _scaleTransform.ScaleX;
+            double centerY = (point.Y - _translateTransform.Y) / _scaleTransform.ScaleY;
+            //Mise à l'échelle
+            _scaleTransform.ScaleX = scale;
+            _scaleTransform.ScaleY = scale;
+            //Retablissement du translate pour éviter un décalage
+            _translateTransform.X = point.X - centerX * _scaleTransform.ScaleX;
+            _translateTransform.Y = point.Y - centerY * _scaleTransform.ScaleY;
         }
-
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed && IsMouseCaptured)
-            {
-                var pos = e.GetPosition(Canvas);
-                var matrix = mt.Matrix; // it's a struct
-                matrix.Translate(pos.X - _last.X, pos.Y - _last.Y);
-                mt.Matrix = matrix;
-                _last = pos;
-            }
-            base.OnMouseMove(e);
-        }
-       */
     }
 }
