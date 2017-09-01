@@ -13,9 +13,8 @@ namespace KNZ.CPV
     public partial class MainWindow : Window
     {
         private VisualizationViewModel _vm;
-
-
-        private Point _pointOnClick; // Click Position for panning
+        private Point _centerPoint;
+        private Point _onClickPoint; // Click Position for panning
         private ScaleTransform _scaleTransform;
         private TranslateTransform _translateTransform;
         private TransformGroup _transformGroup;
@@ -36,19 +35,18 @@ namespace KNZ.CPV
             _scaleTransform = new ScaleTransform();
             _transformGroup = new TransformGroup();
             _transformGroup.Children.Add(_scaleTransform);
-            _transformGroup.Children.Add(_translateTransform);
-            
+            _transformGroup.Children.Add(_translateTransform);           
 
             Canvas.RenderTransform = _transformGroup;
             DataContext = _vm;
         }
 
+       
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //Capture Mouse
+        {           
             Canvas.CaptureMouse();
             //Store click position relation to Parent of the canvas
-            _pointOnClick = e.GetPosition((FrameworkElement)Canvas.Parent);
+            _onClickPoint = e.GetPosition((FrameworkElement)Canvas.Parent);     
         }
 
         private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -60,22 +58,21 @@ namespace KNZ.CPV
         }
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-           
+        {           
             //Return if mouse is not captured
             if (!Canvas.IsMouseCaptured) return;
             //Point on move from Parent
-            Point pointOnMove = e.GetPosition((FrameworkElement)Canvas.Parent);
+            Point onMovePoint = e.GetPosition((FrameworkElement)Canvas.Parent);           
+                     
             //set TranslateTransform
-            _translateTransform.X = Canvas.RenderTransform.Value.OffsetX - (_pointOnClick.X - pointOnMove.X);
-            _translateTransform.Y = Canvas.RenderTransform.Value.OffsetY - (_pointOnClick.Y - pointOnMove.Y);
+            _translateTransform.X = Canvas.RenderTransform.Value.OffsetX - (_onClickPoint.X - onMovePoint.X);
+            _translateTransform.Y = Canvas.RenderTransform.Value.OffsetY - (_onClickPoint.Y - onMovePoint.Y);
             //Update pointOnClic
-            _pointOnClick = e.GetPosition((FrameworkElement)Canvas.Parent);
+            _onClickPoint = e.GetPosition((FrameworkElement)Canvas.Parent);
         }
 
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            //Point de la souris
             Point mousePosition = e.GetPosition(Canvas);
             //Actual Zoom
             double zoomNow = Math.Round(Canvas.RenderTransform.Value.M11, 1);
@@ -83,26 +80,42 @@ namespace KNZ.CPV
             double zoomScale = 0.1;
             //Positive or negative zoom
             double valZoom = e.Delta > 0 ? zoomScale : -zoomScale;
-            //Point de la souris pour le panning et zoom/dezoom
             Point pointOnMove = e.GetPosition((FrameworkElement)Canvas.Parent);
-            //RenderTransformOrigin (doesn't fully working)
             Canvas.RenderTransformOrigin = new Point(mousePosition.X / Canvas.ActualWidth, mousePosition.Y / Canvas.ActualHeight);
-            //Appel du zoom
             Zoom(new Point(mousePosition.X, mousePosition.Y), zoomNow + valZoom);
         }
 
         /// Zoom function
         private void Zoom(Point point, double scale)
         {
-            //Calcul des centres selon la position de la souris
             double centerX = (point.X - _translateTransform.X) / _scaleTransform.ScaleX;
             double centerY = (point.Y - _translateTransform.Y) / _scaleTransform.ScaleY;
-            //Mise à l'échelle
+          
             _scaleTransform.ScaleX = scale;
             _scaleTransform.ScaleY = scale;
-            //Retablissement du translate pour éviter un décalage
             _translateTransform.X = point.X - centerX * _scaleTransform.ScaleX;
             _translateTransform.Y = point.Y - centerY * _scaleTransform.ScaleY;
+        }
+
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                if (_centerPoint == null)
+                {
+                    _centerPoint.Y = _vm.BGImage.Height / 2;
+                    _centerPoint.X = _vm.BGImage.Width / 2;
+                }
+                Zoom(_centerPoint, 1);
+                ReMoveToCenter();                
+            }
+        }
+
+        private void ReMoveToCenter()
+        {
+            _translateTransform.X = _centerPoint.X;
+            _translateTransform.Y = _centerPoint.Y;
         }
     }
 }

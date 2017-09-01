@@ -29,10 +29,10 @@ namespace KNZ.CPV
         {
             myCanvas.Children.Clear();
           
-            //DrawLineSegments(myCanvas);
+            DrawLineSegments(myCanvas);
             DrawRectangels(myCanvas);
-           // DrawTarget(myCanvas);
-            //DrawCircles(myCanvas);
+            DrawTarget(myCanvas);
+            DrawCircles(myCanvas);
             DrawCapsules(myCanvas);
 
         }

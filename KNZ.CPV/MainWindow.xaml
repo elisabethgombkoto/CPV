@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KNZ.CPV"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="850"
-        >
+        KeyDown="Window_KeyDown">
     <Grid >
         <StackPanel>
             <Button Content="Start Visualise" Command="{Binding StartVisualisingCommand}" />
@@ -14,11 +14,10 @@
         </StackPanel>
         
         <ScrollViewer Name="ScrollViewer"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" >
-            <Canvas Name="Canvas" Width="723" Height="649" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove" MouseWheel="Canvas_MouseWheel">
+            <Canvas Name="Canvas" Width="723" Height="649"   MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove" MouseWheel="Canvas_MouseWheel">
                 <Canvas.Background>
-                    <ImageBrush ImageSource="{Binding BGImage}"/>
-                </Canvas.Background>
-               
+                    <ImageBrush ImageSource="{Binding BGImage}" />
+                </Canvas.Background>               
             </Canvas>          
         </ScrollViewer>
     </Grid>
