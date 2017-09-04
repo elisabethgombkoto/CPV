@@ -42,7 +42,7 @@ namespace KNZ.CPV
             List<RectangleDatas> rectangles = _mdc.GetAllShapeParameter().Rectangles;
             foreach (RectangleDatas datas in rectangles)
             {
-                RectangleCalculatedDatas calculated = CC.CalculateRectangleDatas(datas);
+                CalculatedDatas calculated = CC.CalculateRectangleDatas(datas);
                 new MyRectangle().DrawOnMyCanvas(calculated, myCanvas);
             }
         }
@@ -52,7 +52,7 @@ namespace KNZ.CPV
             List<LineSegmentDatas> linesegments = _mdc.GetAllShapeParameter().LineSegments;
             foreach (LineSegmentDatas datas in linesegments)
             {
-                LineSegmentCalculatedDatas calculated = CC.CalculateLineDatas(datas);
+                CalculatedDatas calculated = CC.CalculateLineDatas(datas);
                 new MyLineSegment().DrawOnMyCanvas(calculated, myCanvas);
             }
         }
@@ -62,7 +62,7 @@ namespace KNZ.CPV
             List<CapsuleDatas> capsules = _mdc.GetAllShapeParameter().Capsules;
             foreach (CapsuleDatas datas in capsules)
             {
-                CapsuleCalculatedDatas calculated = CC.CalculateCapsuleDatas(datas);
+                CalculatedDatas calculated = CC.CalculateCapsuleDatas(datas);
                 new MyCapsule().DrawOnMyCanvas(calculated, myCanvas);
             }
         }
@@ -72,7 +72,7 @@ namespace KNZ.CPV
             List<CircleDatas> circles = _mdc.GetAllShapeParameter().Circles;
             foreach (CircleDatas datas in circles)
             {
-                CircleCalculatedDatas calculated = CC.CalculateCircleDatas(datas);
+                CalculatedDatas calculated = CC.CalculateCircleDatas(datas);
                 new MyCircle().DrawOnMyCanvas(calculated, myCanvas);
             }
         }
@@ -84,7 +84,7 @@ namespace KNZ.CPV
             foreach (TargetDatas datas in targets)
             {
                 TargetDatas d = datas;
-                TargetCalculatedDatas calculated = CC.CalculateTargetDatas(d);
+                CalculatedDatas calculated = CC.CalculateTargetDatas(d);
                 DrawTargetRec(calculated, myCanvas, level);
                 while (level > 0)
                 {
@@ -96,7 +96,7 @@ namespace KNZ.CPV
             }
         }
         
-        private void DrawTargetRec(TargetCalculatedDatas calculated, Canvas myCanvas, int level)
+        private void DrawTargetRec(CalculatedDatas calculated, Canvas myCanvas, int level)
         {
             new MyTarget().DrawOnMyCanvas(calculated, myCanvas);
         }

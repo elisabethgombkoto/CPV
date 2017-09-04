@@ -24,9 +24,7 @@ namespace KNZ.CPV
         {
             InitializeComponent();
             DataController mdc = new DataController();
-            //TODO It should be so that Calculator know the Canvas, it did not work
-            //Calculator calculator = new Calculator(Canvas); 
-            Calculator calculator = new Calculator();
+            Calculator calculator = new Calculator(Canvas.Width, Canvas.Height);
             VisualizationController visualizationController = new VisualizationController(mdc, calculator);
             _vm = new VisualizationViewModel(Canvas, visualizationController );
 

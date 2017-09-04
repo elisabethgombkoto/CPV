@@ -114,19 +114,11 @@ namespace KNZ.CPV
         }
 
         public void Draw()
-        {
-           //TODO This is hacking, must be solved diffrently
-            AddCanvas();
+        {          
             _visualizationController.DrawShapesOnCanvas(MyCanvas);            
         }
-        /// <summary>
-        /// hacking 
-        /// </summary>
-        private void AddCanvas()
-        {
-            _visualizationController.CC.Width = MyCanvas.ActualWidth;
-            _visualizationController.CC.Height = MyCanvas.ActualHeight;
-        }
+       
+      
 
         private void ExecuteStartVisualisingCommand()
         {

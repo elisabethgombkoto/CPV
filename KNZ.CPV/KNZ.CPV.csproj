@@ -84,9 +84,7 @@
     </ApplicationDefinition>
     <Compile Include="Calculator.cs" />
     <Compile Include="CapsuleCalculatedDatas.cs" />
-    <Compile Include="CircleCalculatedDatas.cs" />
     <Compile Include="Datas.cs" />
-    <Compile Include="LineSegmentCalculatedDatas.cs" />
     <Compile Include="MonitorData.cs" />
     <Compile Include="MyCapsule.cs" />
     <Compile Include="MyCircle.cs" />
@@ -94,8 +92,6 @@
     <Compile Include="MyTarget.cs" />
     <Compile Include="MyLineSegment.cs" />
     <Compile Include="MyRectangle.cs" />
-    <Compile Include="RectangleCalculatedDatas.cs" />
-    <Compile Include="TargetCalculatedDatas.cs" />
     <Compile Include="VisualizationController.cs" />
     <Compile Include="VisualizationViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -137,7 +133,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

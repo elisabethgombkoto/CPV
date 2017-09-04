@@ -19,7 +19,7 @@ namespace KNZ.CPV
             Height = height;
         }
 
-        internal RectangleCalculatedDatas CalculateRectangleDatas(RectangleDatas datas)
+        internal CalculatedDatas CalculateRectangleDatas(RectangleDatas datas)
         {
             double relativeX1 = Width / _workspaceWidth * datas.X1;
             double relativeX2 = Width / _workspaceWidth * datas.X2;
@@ -31,20 +31,20 @@ namespace KNZ.CPV
             double bottom = Math.Min(relativeY1, relativeY2);
             double left = Math.Min(relativeX1, relativeX2);
 
-            return new RectangleCalculatedDatas(width,height,bottom,left);
+            return new CalculatedDatas(width,height,bottom,left);
         }
      
-        internal LineSegmentCalculatedDatas CalculateLineDatas(LineSegmentDatas datas)
+        internal CalculatedDatas CalculateLineDatas(LineSegmentDatas datas)
         {
             double relativeX1 = (Width / _workspaceWidth) * datas.X1;
             double relativeX2 = (Width / _workspaceWidth) * datas.X2;
             double relativeY1 = ((_workspaceHeight- datas.Y1) / _workspaceHeight) * Height;
             double relativeY2 = ((_workspaceHeight - datas.Y2) / _workspaceHeight) * Height;
 
-            return new LineSegmentCalculatedDatas(relativeX1, relativeY1, relativeX2, relativeY2);
+            return new CalculatedDatas(relativeX1, relativeY1, relativeX2, relativeY2);
         }
 
-        internal CapsuleCalculatedDatas CalculateCapsuleDatas(CapsuleDatas datas)
+        internal CalculatedDatas CalculateCapsuleDatas(CapsuleDatas datas)
         {
             double relativeX1 = Width / _workspaceWidth * datas.X1;
             double relativeX2 = Width / _workspaceWidth * datas.X2;
@@ -57,10 +57,10 @@ namespace KNZ.CPV
             double bottom = Math.Min(relativeY1, relativeY2) - relativeR;
             double left = Math.Min(relativeX1, relativeX2) - relativeR;
            
-            return new CapsuleCalculatedDatas(width,height,bottom,left);
+            return new CalculatedDatas(width,height,bottom,left);
         }
 
-        internal CircleCalculatedDatas CalculateCircleDatas(CircleDatas datas)
+        internal CalculatedDatas CalculateCircleDatas(CircleDatas datas)
         {
             double relativeX = Width / _workspaceWidth * datas.X;
             double relativeY = Height / _workspaceHeight * datas.Y;
@@ -71,10 +71,10 @@ namespace KNZ.CPV
             double left = relativeX - relativeR;
             double bottom = relativeY - relativeR;
 
-            return new CircleCalculatedDatas(width, height, bottom, left);
+            return new CalculatedDatas(width, height, bottom, left);
         }
 
-        internal TargetCalculatedDatas CalculateTargetDatas(TargetDatas datas)
+        internal CalculatedDatas CalculateTargetDatas(TargetDatas datas)
         {
             double relativeX = Width / _workspaceWidth * datas.X;
             double relativeY = Height / _workspaceHeight  * datas.Y;
@@ -85,7 +85,7 @@ namespace KNZ.CPV
             double left = relativeX - relativeR;
             double bottom = relativeY - relativeR;
 
-            return new TargetCalculatedDatas(width, height, bottom, left); 
+            return new CalculatedDatas(width, height, bottom, left); 
         }
     }
 }

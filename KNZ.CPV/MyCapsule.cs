@@ -15,20 +15,20 @@ namespace KNZ.CPV
         public MyCapsule()
         {
         }
-        internal void DrawOnMyCanvas(CapsuleCalculatedDatas calculatedDatas, Canvas myCanvas)
+        internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
         {
             UIElement uiElement = Create(calculatedDatas);
-            Canvas.SetBottom(uiElement, calculatedDatas.Bottom);
-            Canvas.SetLeft(uiElement, calculatedDatas.Left);
+            Canvas.SetBottom(uiElement, calculatedDatas.ThirdShapePositionParameter);
+            Canvas.SetLeft(uiElement, calculatedDatas.FourthShapePositionParameter);
 
             myCanvas.Children.Add(uiElement);
         }
-        private UIElement Create(CapsuleCalculatedDatas calculatedDatas)
+        private UIElement Create(CalculatedDatas calculatedDatas)
         {
             Rectangle rect = new Rectangle()
             {
-                Width = calculatedDatas.Width,
-                Height = calculatedDatas.Height,
+                Width = calculatedDatas.FirstShapePostionParameter,
+                Height = calculatedDatas.SecondShapePositionParameter,
                 StrokeThickness = this.StrokeThickness = 1,
                 RadiusX = 80.00,
                 RadiusY = 80.00,

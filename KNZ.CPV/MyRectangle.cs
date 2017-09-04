@@ -15,21 +15,21 @@ namespace KNZ.CPV
         public SolidColorBrush Fill { get; set; }
 
         
-        internal void DrawOnMyCanvas(RectangleCalculatedDatas calculatedDatas, Canvas myCanvas)
+        internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
         {
             UIElement uiElement = Create(calculatedDatas);
-            Canvas.SetBottom(uiElement, calculatedDatas.Bottom);
-            Canvas.SetLeft(uiElement, calculatedDatas.Left);
+            Canvas.SetBottom(uiElement, calculatedDatas.ThirdShapePositionParameter);
+            Canvas.SetLeft(uiElement, calculatedDatas.FourthShapePositionParameter);
 
             myCanvas.Children.Add(uiElement);
         }
 
-        private UIElement Create(RectangleCalculatedDatas calculatedDatas)
+        private UIElement Create(CalculatedDatas calculatedDatas)
         {
             Rectangle rect = new Rectangle()
             {
-                Width = calculatedDatas.Width,
-                Height = calculatedDatas.Height,
+                Width = calculatedDatas.FirstShapePostionParameter,
+                Height = calculatedDatas.SecondShapePositionParameter,
                 StrokeThickness = this.StrokeThickness = 2,
                 RadiusX = 0.00,
                 Stroke = Brushes.Black

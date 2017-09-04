@@ -16,22 +16,22 @@ namespace KNZ.CPV
 
 
 
-        internal void DrawOnMyCanvas(TargetCalculatedDatas calculatedDatas, Canvas myCanvas)
+        internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
         {
             UIElement uiElement = Create(calculatedDatas);
-            Canvas.SetBottom(uiElement, calculatedDatas.Bottom);
-            Canvas.SetLeft(uiElement, calculatedDatas.Left);
+            Canvas.SetBottom(uiElement, calculatedDatas.ThirdShapePositionParameter);
+            Canvas.SetLeft(uiElement, calculatedDatas.FourthShapePositionParameter);
 
             myCanvas.Children.Add(uiElement);
            
         }
 
-        private UIElement Create(TargetCalculatedDatas calculatedDatas)
+        private UIElement Create(CalculatedDatas calculatedDatas)
         {
             Ellipse elli = new Ellipse()
             {
-                Width = calculatedDatas.Width,
-                Height = calculatedDatas.Height,
+                Width = calculatedDatas.FirstShapePostionParameter,
+                Height = calculatedDatas.SecondShapePositionParameter,
                 Stroke = Brushes.Red,
                 StrokeThickness = this.StrokeThickness = 1
             };

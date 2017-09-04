@@ -17,20 +17,20 @@ namespace KNZ.CPV
         public double StrokeThickness { get; internal set; }
 
         //könnte man abstrachieren
-        internal void DrawOnMyCanvas(LineSegmentCalculatedDatas calculatedDatas, Canvas myCanvas)
+        internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
         {
             UIElement uiElement = Create(calculatedDatas);  
             myCanvas.Children.Add(uiElement);
         }
 
-        private UIElement Create(LineSegmentCalculatedDatas calculatedDatas)
+        private UIElement Create(CalculatedDatas calculatedDatas)
         {
             Line line = new Line()
             {
-                X1 = calculatedDatas.X1,                
-                Y1 = calculatedDatas.Y1,
-                X2 = calculatedDatas.X2,
-                Y2 = calculatedDatas.Y2,
+                X1 = calculatedDatas.FirstShapePostionParameter,                
+                Y1 = calculatedDatas.SecondShapePositionParameter,
+                X2 = calculatedDatas.ThirdShapePositionParameter,
+                Y2 = calculatedDatas.FourthShapePositionParameter,
                 Stroke = Brushes.Black,
                 StrokeThickness = this.StrokeThickness = 2
             };
