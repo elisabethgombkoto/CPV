@@ -6,8 +6,35 @@ using System.Windows.Shapes;
 
 namespace KNZ.CPV
 {
-    internal class MyTarget 
+    internal class MyTarget : MyShape
     {
+        public MyTarget(double argFirstShapePostionParameter, double argSecondShapePositionParameter, double argThirdShapePositionParameter, double argFourthShapePositionParameter) : base(argFirstShapePostionParameter, argSecondShapePositionParameter, argThirdShapePositionParameter, argFourthShapePositionParameter)
+        {
+        }
+
+        internal override void DrawOnMyCanvas(Canvas myCanvas)
+        {
+            UIElement uiElement = Create();
+            Canvas.SetBottom(uiElement, ThirdShapePositionParameter);
+            Canvas.SetLeft(uiElement, FourthShapePositionParameter);
+
+            myCanvas.Children.Add(uiElement);
+
+        }
+
+        private UIElement Create()
+        {
+            Ellipse elli = new Ellipse()
+            {
+                Width = FirstShapePostionParameter,
+                Height = SecondShapePositionParameter,
+                Stroke = Brushes.Red,
+                StrokeThickness = this.StrokeThickness = 1
+            };
+
+            return elli;
+        }
+        /*
         public double Width { get; internal set; }
         public double Height { get; internal set; }
         public SolidColorBrush Stroke { get; internal set; }
@@ -38,7 +65,7 @@ namespace KNZ.CPV
             
             return elli;
         }
-
+        */
         /*
         internal void DrawTargetOnCanvas(double r, double x, double y, Canvas myCanvas, int v)
         {
@@ -143,5 +170,6 @@ namespace KNZ.CPV
           }
 
      */
+
     }
 }

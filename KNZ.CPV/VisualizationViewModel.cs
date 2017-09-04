@@ -59,28 +59,7 @@ namespace KNZ.CPV
             }
         }
 
-        private DelegateCommand _resizeCommand;
-        public ICommand ResizeCommand
-        {
-            get
-            {
-                if(_resizeCommand == null)
-                {
-                    _resizeCommand = new DelegateCommand(ExecuteResizeCommand, CanExecuteResizeCommand);
-                }
-                return _resizeCommand;
-            }
-        }
-
-        private bool CanExecuteResizeCommand()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ExecuteResizeCommand()
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public VisualizationViewModel( Canvas canvas, VisualizationController visualizationController)
         {

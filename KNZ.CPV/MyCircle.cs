@@ -6,8 +6,33 @@ using System.Windows.Shapes;
 
 namespace KNZ.CPV
 {
-    internal class MyCircle 
+    internal class MyCircle : MyShape
     {
+        public MyCircle(double argFirstShapePostionParameter, double argSecondShapePositionParameter, double argThirdShapePositionParameter, double argFourthShapePositionParameter) : base(argFirstShapePostionParameter, argSecondShapePositionParameter, argThirdShapePositionParameter, argFourthShapePositionParameter)
+        {
+        }
+
+        internal override void DrawOnMyCanvas(Canvas myCanvas)
+        {
+            UIElement uiElement = Create();
+            Canvas.SetBottom(uiElement, ThirdShapePositionParameter);
+            Canvas.SetLeft(uiElement, FourthShapePositionParameter);
+
+            myCanvas.Children.Add(uiElement);
+        }
+        private UIElement Create()
+        {
+            Ellipse elli = new Ellipse()
+            {
+                Width = FirstShapePostionParameter,
+                Height = SecondShapePositionParameter,
+                StrokeThickness = this.StrokeThickness = 1,
+                Stroke = Brushes.Red
+            };
+
+            return elli;
+        }
+        /*
         public MyCircle()
         {
         }
@@ -34,5 +59,7 @@ namespace KNZ.CPV
 
             return elli;
         }
+        */
+
     }
 }

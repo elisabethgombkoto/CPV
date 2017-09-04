@@ -12,12 +12,12 @@ namespace KNZ.CPV
     internal class VisualizationController
     {
         private DataController _mdc;
-        public Calculator CC { get; set; }
+        public ShapeDataConverter ShapeDataConverter { get; set; }
 
-        public VisualizationController(DataController mdc, Calculator cc)
+        public VisualizationController(DataController mdc, ShapeDataConverter sdc)
         {
             _mdc = mdc;
-            CC = cc;
+            ShapeDataConverter = sdc;
         }
 
         public VisualizationController(DataController mdc)
@@ -28,77 +28,52 @@ namespace KNZ.CPV
         public void DrawShapesOnCanvas(Canvas myCanvas)
         {
             myCanvas.Children.Clear();
+            MonitorData monitorData = _mdc.GetAllShapeParameter();
           
-            DrawLineSegments(myCanvas);
-            DrawRectangels(myCanvas);
-            DrawTarget(myCanvas);
-            DrawCircles(myCanvas);
-            DrawCapsules(myCanvas);
-
+            DrawRectangels(myCanvas, monitorData.Rectangles);
+            DrawLineSegments(myCanvas, monitorData.LineSegments);
+            DrawCapsules(myCanvas, monitorData.Capsules);
+            DrawCircles(myCanvas, monitorData.Circles);
+            DrawTarget(myCanvas, monitorData.Targets);
         }
 
-        private void DrawRectangels(Canvas myCanvas)
+        private void DrawTarget(Canvas myCanvas, List<TargetDatas> targets)
         {
-            List<RectangleDatas> rectangles = _mdc.GetAllShapeParameter().Rectangles;
-            foreach (RectangleDatas datas in rectangles)
+           foreach(TargetDatas datas in targets)
             {
-                CalculatedDatas calculated = CC.CalculateRectangleDatas(datas);
-                new MyRectangle().DrawOnMyCanvas(calculated, myCanvas);
+                ShapeDataConverter.CreateMyTarget(datas).DrawOnMyCanvas(myCanvas);
             }
         }
 
-        private void DrawLineSegments(Canvas myCanvas)
+        private void DrawRectangels(Canvas myCanvas, List<RectangleDatas> rectangleDatas)
         {
-            List<LineSegmentDatas> linesegments = _mdc.GetAllShapeParameter().LineSegments;
-            foreach (LineSegmentDatas datas in linesegments)
+            foreach (RectangleDatas datas in rectangleDatas)
             {
-                CalculatedDatas calculated = CC.CalculateLineDatas(datas);
-                new MyLineSegment().DrawOnMyCanvas(calculated, myCanvas);
+                ShapeDataConverter.CreateMyRectangle(datas).DrawOnMyCanvas( myCanvas);
             }
         }
-
-        private void DrawCapsules(Canvas myCanvas)
+        private void DrawLineSegments(Canvas myCanvas, List<LineSegmentDatas> rectangleDatas)
         {
-            List<CapsuleDatas> capsules = _mdc.GetAllShapeParameter().Capsules;
-            foreach (CapsuleDatas datas in capsules)
+            foreach (LineSegmentDatas datas in rectangleDatas)
             {
-                CalculatedDatas calculated = CC.CalculateCapsuleDatas(datas);
-                new MyCapsule().DrawOnMyCanvas(calculated, myCanvas);
+                ShapeDataConverter.CreateMyLineSegmets(datas).DrawOnMyCanvas(myCanvas);
             }
         }
-
-        private void DrawCircles(Canvas myCanvas)
+        private void DrawCapsules(Canvas myCanvas, List<CapsuleDatas> capsulesDatas)
         {
-            List<CircleDatas> circles = _mdc.GetAllShapeParameter().Circles;
-            foreach (CircleDatas datas in circles)
+            foreach(CapsuleDatas datas in capsulesDatas)
             {
-                CalculatedDatas calculated = CC.CalculateCircleDatas(datas);
-                new MyCircle().DrawOnMyCanvas(calculated, myCanvas);
-            }
-        }
-
-        private void DrawTarget(Canvas myCanvas)
-        {
-            int level = 3;
-            List<TargetDatas> targets = _mdc.GetAllShapeParameter().Targets;
-            foreach (TargetDatas datas in targets)
-            {
-                TargetDatas d = datas;
-                CalculatedDatas calculated = CC.CalculateTargetDatas(d);
-                DrawTargetRec(calculated, myCanvas, level);
-                while (level > 0)
-                {
-                    level = level - 1;
-                    d.R = d.R - (d.R*0.3);
-                    calculated = CC.CalculateTargetDatas(d);
-                    DrawTargetRec(calculated, myCanvas, level);
-                }  
+                ShapeDataConverter.CreateMyCapsule(datas).DrawOnMyCanvas(myCanvas);
             }
         }
         
-        private void DrawTargetRec(CalculatedDatas calculated, Canvas myCanvas, int level)
+        private void DrawCircles(Canvas myCanvas, List<CircleDatas> circleDatas)
         {
-            new MyTarget().DrawOnMyCanvas(calculated, myCanvas);
+            foreach(CircleDatas datas in circleDatas)
+            {
+                ShapeDataConverter.CreateMyCircle(datas).DrawOnMyCanvas(myCanvas);
+            }
         }
+       
     }
 }

@@ -6,8 +6,38 @@ using System.Windows.Shapes;
 
 namespace KNZ.CPV
 {
-    internal class MyLineSegment 
+    internal class MyLineSegment : MyShape
     {
+        public PointCollection Points { get; set; }
+        public double X1 { get; internal set; }
+        public double X2 { get; internal set; }
+        public double Y1 { get; internal set; }
+        public double Y2 { get; internal set; }       
+
+        public MyLineSegment(double argFirstShapePostionParameter, double argSecondShapePositionParameter, double argThirdShapePositionParameter, double argFourthShapePositionParameter) : base(argFirstShapePostionParameter, argSecondShapePositionParameter, argThirdShapePositionParameter, argFourthShapePositionParameter)
+        {
+        }
+
+        internal override void DrawOnMyCanvas(Canvas myCanvas)
+        {
+            UIElement uiElement = Create();
+            myCanvas.Children.Add(uiElement);
+        }
+        private UIElement Create()
+        {
+            Line line = new Line()
+            {
+                X1 = FirstShapePostionParameter,
+                Y1 = SecondShapePositionParameter,
+                X2 = ThirdShapePositionParameter,
+                Y2 = FourthShapePositionParameter,
+                Stroke = Brushes.Black,
+                StrokeThickness = this.StrokeThickness = 2
+            };
+
+            return line;
+        }
+        /*
         public PointCollection Points { get; set; }
         public double X1 { get; internal set; }
         public double X2 { get; internal set; }
@@ -38,12 +68,12 @@ namespace KNZ.CPV
             return line;
         }
 
+        */
 
 
 
 
 
-       
 
 
         /*
@@ -171,6 +201,7 @@ namespace KNZ.CPV
             return line;
         }
         */
+
     }
 
 }

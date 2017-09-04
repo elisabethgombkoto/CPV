@@ -82,8 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Calculator.cs" />
-    <Compile Include="CapsuleCalculatedDatas.cs" />
+    <Compile Include="ShapeDataConverter.cs" />
     <Compile Include="Datas.cs" />
     <Compile Include="MonitorData.cs" />
     <Compile Include="MyCapsule.cs" />

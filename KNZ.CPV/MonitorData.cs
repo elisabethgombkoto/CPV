@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace KNZ.CPV
@@ -6,13 +7,12 @@ namespace KNZ.CPV
     public class MonitorData
     {
         public List<TargetDatas> Targets { get; set; }
-        public List<RectangleDatas> Rectangles { get; set; }// Hier vielleicht wäre strukt besser
+        public List<RectangleDatas> Rectangles { get; set; }
         public List<CapsuleDatas> Capsules { get; set; }
         public List<CircleDatas> Circles { get; set; }
         public List<LineSegmentDatas> LineSegments { get; set; }
 
-
-        public MonitorData(double moving)
+    public MonitorData(double moving)
         {
             this.Targets = new List<TargetDatas>();
             TargetDatas tar = new TargetDatas();
@@ -22,7 +22,7 @@ namespace KNZ.CPV
             tar.R = 100;
             Targets.Add(tar);
 
-            this.Rectangles = new List<RectangleDatas>();
+            this.Rectangles = new List<RectangleDatas>();            
             double trollyX1 = 650;
             double trollyY1 = 700;
             double trollyX2 = 750;
@@ -45,7 +45,6 @@ namespace KNZ.CPV
 
 
             RectangleDatas trolly = new RectangleDatas();
-            
             trolly.X1 = trollyX1;
             trolly.Y1 = trollyY1;
             trolly.X2 = trollyX2;
@@ -60,6 +59,7 @@ namespace KNZ.CPV
             Rectangles.Add(rad1);
 
             RectangleDatas rec = new RectangleDatas();
+      
             rec.X1 = recX1;
             rec.Y1 = recY1;
             rec.X2 = recX2;
@@ -76,6 +76,7 @@ namespace KNZ.CPV
 
 
             this.LineSegments = new List<LineSegmentDatas>();
+          
             double vectorX1 = tar.X;
             double vectorY1 = tar.Y;
             double vectorX2 = 700;
@@ -93,7 +94,7 @@ namespace KNZ.CPV
 
             axisX1 = axisX1 - moving;
             axisX2 = axisX2 - moving;
-           
+
             LineSegmentDatas vector = new LineSegmentDatas();
             vector.X1 = vectorX1;
             vector.Y1 = vectorY1;
@@ -102,6 +103,7 @@ namespace KNZ.CPV
             LineSegments.Add(vector);
 
             LineSegmentDatas axis = new LineSegmentDatas();
+            
             axis.X1 = axisX1;
             axis.Y1 = axisY1;
             axis.X2 = axisX2;
@@ -126,7 +128,7 @@ namespace KNZ.CPV
             cap1.R = 75;
             Capsules.Add(cap1);
 
-
+        
         }
 
     }
