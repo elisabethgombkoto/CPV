@@ -82,21 +82,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Shapes\IShape.cs" />
     <Compile Include="ShapeDatas\CapsuleDatas.cs" />
     <Compile Include="ShapeDatas\CircleDatas .cs" />
-    <Compile Include="DataConverter.cs" />
+    <Compile Include="ConverterStrategy.cs" />
     <Compile Include="ShapeDatas\RectangleDatas.cs" />
     <Compile Include="IConverterStrategy.cs" />
-    <Compile Include="IMonitorDataFactory.cs" />
+    <Compile Include="IMonitorDataProvider.cs" />
     <Compile Include="IMonitorData.cs" />
     <Compile Include="ShapeDatas\LineSegmentDatas.cs" />
     <Compile Include="MonitorData.cs" />
-    <Compile Include="MyShapes\MyCapsule.cs" />
-    <Compile Include="MyShapes\MyCircle.cs" />
-    <Compile Include="MyShapes\MyShape.cs" />
-    <Compile Include="MyShapes\MyTarget.cs" />
-    <Compile Include="MyShapes\MyLineSegment.cs" />
-    <Compile Include="MyShapes\MyRectangle.cs" />
+    <Compile Include="Shapes\Capsule.cs" />
+    <Compile Include="Shapes\Circle.cs" />
+    <Compile Include="Shapes\AbstractShape.cs" />
+    <Compile Include="Shapes\LineSegment.cs" />
+    <Compile Include="Shapes\Rectangle.cs" />
     <Compile Include="ShapeDatas\TargetDatas .cs" />
     <Compile Include="VisualizationController.cs" />
     <Compile Include="VisualizationViewModel.cs" />
@@ -114,7 +114,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataController.cs" />
+    <Compile Include="MockMonitorDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -143,6 +143,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="..\pic.png">
+      <Link>pic.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

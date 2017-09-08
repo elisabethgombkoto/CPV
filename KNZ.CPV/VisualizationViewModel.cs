@@ -10,16 +10,16 @@ using System.Windows.Threading;
 
 namespace KNZ.CPV
 {
-    internal class VisualizationViewModel : INotifyPropertyChanged
+    public class VisualizationViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public Canvas MyCanvas { get; }
 
         private VisualizationController _visualizationController;
         private DispatcherTimer _dispatchedTimer;
-        private ImageSource _BGImage = new BitmapImage(new Uri(@"C:\Users\Admin\Documents\Visual Studio 2017\Projects\VisualizationTool\pic.png", UriKind.Absolute));
-  
-       
+        private ImageSource _BGImage = new BitmapImage(new Uri(@".\pic.png", UriKind.Relative));
+
+
         private bool _hasTimerStared;
         private bool HasTimerStarted
         {
@@ -59,9 +59,9 @@ namespace KNZ.CPV
             }
         }
 
-      
 
-        public VisualizationViewModel( Canvas canvas, VisualizationController visualizationController)
+
+        public VisualizationViewModel(Canvas canvas, VisualizationController visualizationController)
         {
             MyCanvas = canvas;
             _visualizationController = visualizationController;
@@ -73,7 +73,7 @@ namespace KNZ.CPV
             };
         }
 
-       
+
 
         public ImageSource BGImage
         {
@@ -81,11 +81,11 @@ namespace KNZ.CPV
             set
             {
                 _BGImage = value;
-                NotifyPropertyChanged("BGImage");
+                NotifyPropertyChanged();
             }
         }
 
-        
+
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -93,11 +93,11 @@ namespace KNZ.CPV
         }
 
         public void Draw()
-        {          
-            _visualizationController.DrawShapesOnCanvas(MyCanvas);            
+        {
+            _visualizationController.DrawShapesOnCanvas(MyCanvas);
         }
-       
-      
+
+
 
         private void ExecuteStartVisualisingCommand()
         {
@@ -111,7 +111,7 @@ namespace KNZ.CPV
             HasTimerStarted = false;
         }
 
-       
+
         private bool CanExecuteStartVisualisingCommand()
         {
             return !HasTimerStarted;
@@ -122,6 +122,6 @@ namespace KNZ.CPV
             return HasTimerStarted;
         }
 
-       
+
     }
 }

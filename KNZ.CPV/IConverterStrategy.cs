@@ -1,11 +1,10 @@
-﻿namespace KNZ.CPV
+﻿using KNZ.CPV.Shapes;
+using System.Collections.Generic;
+
+namespace KNZ.CPV
 {
-    internal interface IConverterStrategy
+    public interface IConverterStrategy
     {
-        MyRectangle CreateMyRectangle(RectangleDatas datas);
-        MyCapsule CreateMyCapsule(CapsuleDatas datas);
-        MyCircle CreateMyCircle(CircleDatas datas);
-        MyLineSegment CreateMyLineSegmets(LineSegmentDatas datas);
-        MyTarget CreateMyTarget(TargetDatas datas);
+        IEnumerable<IShape> Convert(IMonitorData monitorData);
     }
 }

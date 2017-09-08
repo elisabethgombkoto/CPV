@@ -23,8 +23,8 @@ namespace KNZ.CPV
         public MainWindow()
         {
             InitializeComponent();
-            DataController dmc = new DataController();
-            DataConverter calculator = new DataConverter(Canvas.Width, Canvas.Height);
+            MockMonitorDataProvider dmc = new MockMonitorDataProvider();
+            ConverterStrategy calculator = new ConverterStrategy(Canvas.Width, Canvas.Height);
             VisualizationController visualizationController = new VisualizationController(dmc, calculator);
             _vm = new VisualizationViewModel(Canvas, visualizationController );
 
