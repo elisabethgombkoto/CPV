@@ -23,9 +23,9 @@ namespace KNZ.CPV
         public MainWindow()
         {
             InitializeComponent();
-            DataController mdc = new DataController();
-            ShapeDataConverter calculator = new ShapeDataConverter(Canvas.Width, Canvas.Height);
-            VisualizationController visualizationController = new VisualizationController(mdc, calculator);
+            DataController dmc = new DataController();
+            DataConverter calculator = new DataConverter(Canvas.Width, Canvas.Height);
+            VisualizationController visualizationController = new VisualizationController(dmc, calculator);
             _vm = new VisualizationViewModel(Canvas, visualizationController );
 
 
@@ -105,8 +105,8 @@ namespace KNZ.CPV
                     _centerPoint.Y = _vm.BGImage.Height / 2;
                     _centerPoint.X = _vm.BGImage.Width / 2;
                 }
-                Zoom(_centerPoint, 1);
-                ReMoveToCenter();                
+                Zoom(_centerPoint, 1);//zoom to original size
+                ReMoveToCenter();   //show bild in center the window             
             }
         }
 

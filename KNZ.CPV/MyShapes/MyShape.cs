@@ -20,7 +20,14 @@ namespace KNZ.CPV
             ThirdShapePositionParameter = argThirdShapePositionParameter;
             FourthShapePositionParameter = argFourthShapePositionParameter;
         }
-        internal abstract  void DrawOnMyCanvas(Canvas myCanvas);
+        internal void DrawOnMyCanvas(Canvas myCanvas)
+        {
+            UIElement uiElement = Create();
+            SetPosition(uiElement);
+            myCanvas.Children.Add(uiElement);
+        }
 
+        internal abstract UIElement Create();
+        internal abstract void SetPosition(UIElement uiElement);
     }
 }

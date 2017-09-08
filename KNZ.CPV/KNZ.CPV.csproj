@@ -82,15 +82,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ShapeDataConverter.cs" />
-    <Compile Include="Datas.cs" />
+    <Compile Include="ShapeDatas\CapsuleDatas.cs" />
+    <Compile Include="ShapeDatas\CircleDatas .cs" />
+    <Compile Include="DataConverter.cs" />
+    <Compile Include="ShapeDatas\RectangleDatas.cs" />
+    <Compile Include="IConverterStrategy.cs" />
+    <Compile Include="IMonitorDataFactory.cs" />
+    <Compile Include="IMonitorData.cs" />
+    <Compile Include="ShapeDatas\LineSegmentDatas.cs" />
     <Compile Include="MonitorData.cs" />
-    <Compile Include="MyCapsule.cs" />
-    <Compile Include="MyCircle.cs" />
-    <Compile Include="MyShape.cs" />
-    <Compile Include="MyTarget.cs" />
-    <Compile Include="MyLineSegment.cs" />
-    <Compile Include="MyRectangle.cs" />
+    <Compile Include="MyShapes\MyCapsule.cs" />
+    <Compile Include="MyShapes\MyCircle.cs" />
+    <Compile Include="MyShapes\MyShape.cs" />
+    <Compile Include="MyShapes\MyTarget.cs" />
+    <Compile Include="MyShapes\MyLineSegment.cs" />
+    <Compile Include="MyShapes\MyRectangle.cs" />
+    <Compile Include="ShapeDatas\TargetDatas .cs" />
     <Compile Include="VisualizationController.cs" />
     <Compile Include="VisualizationViewModel.cs" />
     <Page Include="MainWindow.xaml">

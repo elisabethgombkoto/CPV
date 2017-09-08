@@ -2,16 +2,21 @@
 
 namespace KNZ.CPV
 {
-    public class DataController
+    public class DataController : IMonitorDataFactory
     {
         int moving = 0;
-        public MonitorData GetAllShapeParameter()
+
+        public IMonitorData Create()
         {
-            MonitorData md = new MonitorData(moving);
+            return new MonitorData(moving);
+        }
+
+        public IMonitorData GetAllShapeParameter()
+        {
+            IMonitorData md = Create();
             moving++;
             return md;
                
-        }
-        
+        }        
     }
 }

@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 namespace KNZ.CPV
 {
-    public class MonitorData
-    {
+    public class MonitorData : IMonitorData
+    { 
         public List<TargetDatas> Targets { get; set; }
         public List<RectangleDatas> Rectangles { get; set; }
         public List<CapsuleDatas> Capsules { get; set; }
         public List<CircleDatas> Circles { get; set; }
         public List<LineSegmentDatas> LineSegments { get; set; }
 
-    public MonitorData(double moving)
+        public MonitorData(double moving)
         {
             this.Targets = new List<TargetDatas>();
             TargetDatas tar = new TargetDatas();
@@ -38,6 +38,11 @@ namespace KNZ.CPV
             double recX2 = 800;
             double recY2 = 700;
 
+            double rec2X1 = 100;
+            double rec2Y1 = 200;
+            double rec2X2 = 300;
+            double rec2Y2 = 400;
+
             trollyX1 = trollyX1 - moving;
             trollyY1 = trollyY1 - moving;
             trollyX2 = trollyX2 - moving;
@@ -59,12 +64,18 @@ namespace KNZ.CPV
             Rectangles.Add(rad1);
 
             RectangleDatas rec = new RectangleDatas();
-      
             rec.X1 = recX1;
             rec.Y1 = recY1;
             rec.X2 = recX2;
             rec.Y2 = recY2;
             Rectangles.Add(rec);
+
+            RectangleDatas rec2 = new RectangleDatas();
+            rec2.X1 = rec2X1;
+            rec2.Y1 = rec2Y1;
+            rec2.X2 = rec2X2;
+            rec2.Y2 = rec2Y2;
+            Rectangles.Add(rec2);
 
             this.Circles = new List<CircleDatas>();
             CircleDatas cir = new CircleDatas();

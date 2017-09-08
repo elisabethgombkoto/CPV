@@ -12,60 +12,56 @@ namespace KNZ.CPV
         {
         }
 
-        internal override void DrawOnMyCanvas(Canvas myCanvas)
-        {
-            UIElement uiElement = Create();
-            Canvas.SetBottom(uiElement, ThirdShapePositionParameter);
-            Canvas.SetLeft(uiElement, FourthShapePositionParameter);
-
-            myCanvas.Children.Add(uiElement);
-
-        }
-
-        private UIElement Create()
+        internal override UIElement Create()
         {
             Ellipse elli = new Ellipse()
             {
                 Width = FirstShapePostionParameter,
                 Height = SecondShapePositionParameter,
                 Stroke = Brushes.Red,
-                StrokeThickness = this.StrokeThickness = 1
+                StrokeThickness = this.StrokeThickness = 5
             };
 
             return elli;
+        }
+
+        internal override void SetPosition(UIElement uiElement)
+        {
+            Canvas.SetBottom(uiElement, ThirdShapePositionParameter);
+            Canvas.SetLeft(uiElement, FourthShapePositionParameter);
         }
         /*
-        public double Width { get; internal set; }
-        public double Height { get; internal set; }
-        public SolidColorBrush Stroke { get; internal set; }
-        public double StrokeThickness { get; internal set; }
-        public SolidColorBrush Fill { get; internal set; }
+public double Width { get; internal set; }
+public double Height { get; internal set; }
+public SolidColorBrush Stroke { get; internal set; }
+public double StrokeThickness { get; internal set; }
+public SolidColorBrush Fill { get; internal set; }
 
 
 
-        internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
-        {
-            UIElement uiElement = Create(calculatedDatas);
-            Canvas.SetBottom(uiElement, calculatedDatas.ThirdShapePositionParameter);
-            Canvas.SetLeft(uiElement, calculatedDatas.FourthShapePositionParameter);
+internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
+{
+   UIElement uiElement = Create(calculatedDatas);
+   Canvas.SetBottom(uiElement, calculatedDatas.ThirdShapePositionParameter);
+   Canvas.SetLeft(uiElement, calculatedDatas.FourthShapePositionParameter);
 
-            myCanvas.Children.Add(uiElement);
-           
-        }
+   myCanvas.Children.Add(uiElement);
 
-        private UIElement Create(CalculatedDatas calculatedDatas)
-        {
-            Ellipse elli = new Ellipse()
-            {
-                Width = calculatedDatas.FirstShapePostionParameter,
-                Height = calculatedDatas.SecondShapePositionParameter,
-                Stroke = Brushes.Red,
-                StrokeThickness = this.StrokeThickness = 1
-            };
-            
-            return elli;
-        }
-        */
+}
+
+private UIElement Create(CalculatedDatas calculatedDatas)
+{
+   Ellipse elli = new Ellipse()
+   {
+       Width = calculatedDatas.FirstShapePostionParameter,
+       Height = calculatedDatas.SecondShapePositionParameter,
+       Stroke = Brushes.Red,
+       StrokeThickness = this.StrokeThickness = 1
+   };
+
+   return elli;
+}
+*/
         /*
         internal void DrawTargetOnCanvas(double r, double x, double y, Canvas myCanvas, int v)
         {

@@ -18,12 +18,8 @@ namespace KNZ.CPV
         {
         }
 
-        internal override void DrawOnMyCanvas(Canvas myCanvas)
-        {
-            UIElement uiElement = Create();
-            myCanvas.Children.Add(uiElement);
-        }
-        private UIElement Create()
+        
+        internal override UIElement Create()
         {
             Line line = new Line()
             {
@@ -34,41 +30,45 @@ namespace KNZ.CPV
                 Stroke = Brushes.Black,
                 StrokeThickness = this.StrokeThickness = 2
             };
-
             return line;
+        }
+
+        internal override void SetPosition(UIElement uiElement)
+        {
+            
         }
         /*
-        public PointCollection Points { get; set; }
-        public double X1 { get; internal set; }
-        public double X2 { get; internal set; }
-        public double Y1 { get; internal set; }
-        public double Y2 { get; internal set; }
-        public SolidColorBrush Stroke { get; internal set; }
-        public double StrokeThickness { get; internal set; }
+public PointCollection Points { get; set; }
+public double X1 { get; internal set; }
+public double X2 { get; internal set; }
+public double Y1 { get; internal set; }
+public double Y2 { get; internal set; }
+public SolidColorBrush Stroke { get; internal set; }
+public double StrokeThickness { get; internal set; }
 
-        //könnte man abstrachieren
-        internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
-        {
-            UIElement uiElement = Create(calculatedDatas);  
-            myCanvas.Children.Add(uiElement);
-        }
+//könnte man abstrachieren
+internal void DrawOnMyCanvas(CalculatedDatas calculatedDatas, Canvas myCanvas)
+{
+   UIElement uiElement = Create(calculatedDatas);  
+   myCanvas.Children.Add(uiElement);
+}
 
-        private UIElement Create(CalculatedDatas calculatedDatas)
-        {
-            Line line = new Line()
-            {
-                X1 = calculatedDatas.FirstShapePostionParameter,                
-                Y1 = calculatedDatas.SecondShapePositionParameter,
-                X2 = calculatedDatas.ThirdShapePositionParameter,
-                Y2 = calculatedDatas.FourthShapePositionParameter,
-                Stroke = Brushes.Black,
-                StrokeThickness = this.StrokeThickness = 2
-            };
-            
-            return line;
-        }
+private UIElement Create(CalculatedDatas calculatedDatas)
+{
+   Line line = new Line()
+   {
+       X1 = calculatedDatas.FirstShapePostionParameter,                
+       Y1 = calculatedDatas.SecondShapePositionParameter,
+       X2 = calculatedDatas.ThirdShapePositionParameter,
+       Y2 = calculatedDatas.FourthShapePositionParameter,
+       Stroke = Brushes.Black,
+       StrokeThickness = this.StrokeThickness = 2
+   };
 
-        */
+   return line;
+}
+
+*/
 
 
 
@@ -201,7 +201,6 @@ namespace KNZ.CPV
             return line;
         }
         */
-
     }
 
 }

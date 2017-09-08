@@ -1,34 +1,25 @@
 ﻿
-using System.Windows.Controls;
-using System.Drawing;
-using System.Windows.Shapes;
-using System.Windows.Media;
-using static KNZ.CPV.MonitorData;
 using System.Collections.Generic;
-using System;
+using System.Windows.Controls;
 
 namespace KNZ.CPV
 {
-    internal class VisualizationController
+    internal class VisualizationController 
     {
-        private DataController _mdc;
-        public ShapeDataConverter ShapeDataConverter { get; set; }
+        private IMonitorDataFactory _mdc;
+        public IConverterStrategy ConverterStrategy { get; set; }
 
-        public VisualizationController(DataController mdc, ShapeDataConverter sdc)
+        public VisualizationController(IMonitorDataFactory mdc, IConverterStrategy converterStrategy)
         {
             _mdc = mdc;
-            ShapeDataConverter = sdc;
+            ConverterStrategy = converterStrategy;
         }
 
-        public VisualizationController(DataController mdc)
-        {
-            _mdc = mdc;
-        }
-
+       
         public void DrawShapesOnCanvas(Canvas myCanvas)
         {
             myCanvas.Children.Clear();
-            MonitorData monitorData = _mdc.GetAllShapeParameter();
+            IMonitorData monitorData = _mdc.GetAllShapeParameter();
           
             DrawRectangels(myCanvas, monitorData.Rectangles);
             DrawLineSegments(myCanvas, monitorData.LineSegments);
@@ -39,31 +30,47 @@ namespace KNZ.CPV
 
         private void DrawTarget(Canvas myCanvas, List<TargetDatas> targets)
         {
-           foreach(TargetDatas datas in targets)
+            int level = 2;
+            foreach (TargetDatas datas in targets)
             {
-                ShapeDataConverter.CreateMyTarget(datas).DrawOnMyCanvas(myCanvas);
+                DrawTargetRecursive(datas, myCanvas, level);
+                while (level > 1)
+                {
+                    level = level - 1;
+                    datas.R = datas.R - (datas.R * 0.5);
+                    DrawTargetRecursive(datas, myCanvas, level);
+                }
+                datas.R = 6;
+                ConverterStrategy.CreateMyTarget(datas).DrawOnMyCanvas(myCanvas);
             }
         }
+
+        private void DrawTargetRecursive (TargetDatas datas, Canvas myCanvas, int level)
+        {
+            ConverterStrategy.CreateMyTarget(datas).DrawOnMyCanvas(myCanvas);
+        }        
 
         private void DrawRectangels(Canvas myCanvas, List<RectangleDatas> rectangleDatas)
         {
             foreach (RectangleDatas datas in rectangleDatas)
             {
-                ShapeDataConverter.CreateMyRectangle(datas).DrawOnMyCanvas( myCanvas);
+                ConverterStrategy.CreateMyRectangle(datas).DrawOnMyCanvas( myCanvas);
             }
         }
+
         private void DrawLineSegments(Canvas myCanvas, List<LineSegmentDatas> rectangleDatas)
         {
             foreach (LineSegmentDatas datas in rectangleDatas)
             {
-                ShapeDataConverter.CreateMyLineSegmets(datas).DrawOnMyCanvas(myCanvas);
+                ConverterStrategy.CreateMyLineSegmets(datas).DrawOnMyCanvas(myCanvas);
             }
         }
+
         private void DrawCapsules(Canvas myCanvas, List<CapsuleDatas> capsulesDatas)
         {
             foreach(CapsuleDatas datas in capsulesDatas)
             {
-                ShapeDataConverter.CreateMyCapsule(datas).DrawOnMyCanvas(myCanvas);
+                ConverterStrategy.CreateMyCapsule(datas).DrawOnMyCanvas(myCanvas);
             }
         }
         
@@ -71,9 +78,8 @@ namespace KNZ.CPV
         {
             foreach(CircleDatas datas in circleDatas)
             {
-                ShapeDataConverter.CreateMyCircle(datas).DrawOnMyCanvas(myCanvas);
+                ConverterStrategy.CreateMyCircle(datas).DrawOnMyCanvas(myCanvas);
             }
-        }
-       
+        }       
     }
 }

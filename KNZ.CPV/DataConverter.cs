@@ -2,7 +2,7 @@
 
 namespace KNZ.CPV
 {
-    internal class ShapeDataConverter
+    internal class DataConverter : IConverterStrategy
     {
         //Width, height of Canvas and Picture
         public double Width { get; set; } 
@@ -11,15 +11,15 @@ namespace KNZ.CPV
         private double _workspaceWidth = 1000;
         private double _workspaceHeight = 1000;
 
-        public ShapeDataConverter() { }
+        public DataConverter() { }
 
-        public ShapeDataConverter(double width, double height)
+        public DataConverter(double width, double height)
         {
             Width = width;
             Height = height;
         }
         
-        internal MyRectangle CreateMyRectangle(RectangleDatas datas)
+        public  MyRectangle CreateMyRectangle(RectangleDatas datas)
         {
             double relativeX1 = Width / _workspaceWidth * datas.X1;
             double relativeX2 = Width / _workspaceWidth * datas.X2;
@@ -34,7 +34,7 @@ namespace KNZ.CPV
             return new MyRectangle(width, height, bottom, left);
         }
 
-        internal MyLineSegment CreateMyLineSegmets(LineSegmentDatas datas)
+        public MyLineSegment CreateMyLineSegmets(LineSegmentDatas datas)
         {
             double relativeX1 = (Width / _workspaceWidth) * datas.X1;
             double relativeX2 = (Width / _workspaceWidth) * datas.X2;
@@ -44,7 +44,7 @@ namespace KNZ.CPV
             return new MyLineSegment(relativeX1, relativeY1, relativeX2, relativeY2);
         }
 
-        internal MyCapsule CreateMyCapsule(CapsuleDatas datas)
+        public MyCapsule CreateMyCapsule(CapsuleDatas datas)
         {
             double relativeX1 = Width / _workspaceWidth * datas.X1;
             double relativeX2 = Width / _workspaceWidth * datas.X2;
@@ -60,7 +60,7 @@ namespace KNZ.CPV
             return new MyCapsule(width, height, bottom, left);
         }
 
-        internal MyCircle CreateMyCircle(CircleDatas datas)
+        public MyCircle CreateMyCircle(CircleDatas datas)
         {
             double relativeX = Width / _workspaceWidth * datas.X;
             double relativeY = Height / _workspaceHeight * datas.Y;
@@ -74,7 +74,7 @@ namespace KNZ.CPV
             return new MyCircle(width, height, bottom, left);
         }
 
-        internal MyTarget CreateMyTarget (TargetDatas datas)
+        public MyTarget CreateMyTarget (TargetDatas datas)
         {
             double relativeX = Width / _workspaceWidth * datas.X;
             double relativeY = Height / _workspaceHeight * datas.Y;
