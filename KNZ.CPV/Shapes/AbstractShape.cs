@@ -26,7 +26,7 @@ namespace KNZ.CPV.Shapes
             _bottom = bottom;
         }
 
-        public virtual void DrawOnMyCanvas(Canvas myCanvas)
+        public virtual void DrawOnCanvas(Canvas myCanvas)
         {
             T shape = Create();
             shape.Width = _width;

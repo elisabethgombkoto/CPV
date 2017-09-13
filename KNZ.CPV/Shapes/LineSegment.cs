@@ -23,7 +23,7 @@ namespace KNZ.CPV.Shapes
             _y2 = y2;
         }
 
-        public void DrawOnMyCanvas(Canvas canvas)
+        public void DrawOnCanvas(Canvas canvas)
         {
             var line = new Line()
             {

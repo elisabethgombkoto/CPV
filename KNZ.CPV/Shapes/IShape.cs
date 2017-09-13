@@ -9,6 +9,6 @@ namespace KNZ.CPV.Shapes
 {
     public interface IShape
     {
-        void DrawOnMyCanvas(Canvas myCanvas);
+        void DrawOnCanvas(Canvas myCanvas);
     }
 }

@@ -13,10 +13,10 @@ namespace KNZ.CPV
     public class VisualizationViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public Canvas MyCanvas { get; }
+        public Canvas Canvas { get; }
 
         private VisualizationController _visualizationController;
-        private DispatcherTimer _dispatchedTimer;
+        private DispatcherTimer _dispatcherTimer;
         private ImageSource _BGImage = new BitmapImage(new Uri(@".\pic.png", UriKind.Relative));
 
 
@@ -63,11 +63,11 @@ namespace KNZ.CPV
 
         public VisualizationViewModel(Canvas canvas, VisualizationController visualizationController)
         {
-            MyCanvas = canvas;
+            Canvas = canvas;
             _visualizationController = visualizationController;
-            _dispatchedTimer = new DispatcherTimer();
-            _dispatchedTimer.Interval = TimeSpan.FromMilliseconds(1);
-            _dispatchedTimer.Tick += (object s, System.EventArgs e) =>
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1);
+            _dispatcherTimer.Tick += (object s, System.EventArgs e) =>
             {
                 Draw();
             };
@@ -94,20 +94,20 @@ namespace KNZ.CPV
 
         public void Draw()
         {
-            _visualizationController.DrawShapesOnCanvas(MyCanvas);
+            _visualizationController.DrawShapesOnCanvas(Canvas);
         }
 
 
 
         private void ExecuteStartVisualisingCommand()
         {
-            _dispatchedTimer.Start();
+            _dispatcherTimer.Start();
             HasTimerStarted = true;
         }
 
         private void ExecuteStopVisualisingCommand()
         {
-            _dispatchedTimer.Stop();
+            _dispatcherTimer.Stop();
             HasTimerStarted = false;
         }
 

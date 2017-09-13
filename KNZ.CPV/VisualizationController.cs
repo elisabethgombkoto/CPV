@@ -29,7 +29,7 @@ namespace KNZ.CPV
 
             foreach (IShape myShape in myShapes)
             {
-                myShape.DrawOnMyCanvas(myCanvas);
+                myShape.DrawOnCanvas(myCanvas);
             }
         }
     }

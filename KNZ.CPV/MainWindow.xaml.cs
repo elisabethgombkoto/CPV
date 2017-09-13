@@ -12,7 +12,7 @@ namespace KNZ.CPV
     /// </summary>
     public partial class MainWindow : Window
     {
-        private VisualizationViewModel _vm;
+        private VisualizationViewModel _visualizationVM;
         private Point _centerPoint;
         private Point _onClickPoint; // Click Position for panning
         private ScaleTransform _scaleTransform;
@@ -26,7 +26,7 @@ namespace KNZ.CPV
             MockMonitorDataProvider dmc = new MockMonitorDataProvider();
             ConverterStrategy calculator = new ConverterStrategy(Canvas.Width, Canvas.Height);
             VisualizationController visualizationController = new VisualizationController(dmc, calculator);
-            _vm = new VisualizationViewModel(Canvas, visualizationController );
+            _visualizationVM = new VisualizationViewModel(Canvas, visualizationController );
 
 
             _translateTransform = new TranslateTransform();
@@ -36,7 +36,7 @@ namespace KNZ.CPV
             _transformGroup.Children.Add(_translateTransform);           
 
             Canvas.RenderTransform = _transformGroup;
-            DataContext = _vm;
+            DataContext = _visualizationVM;
         }
 
        
@@ -102,15 +102,15 @@ namespace KNZ.CPV
             {
                 if (_centerPoint == null)
                 {
-                    _centerPoint.Y = _vm.BGImage.Height / 2;
-                    _centerPoint.X = _vm.BGImage.Width / 2;
+                    _centerPoint.Y = _visualizationVM.BGImage.Height / 2;
+                    _centerPoint.X = _visualizationVM.BGImage.Width / 2;
                 }
                 Zoom(_centerPoint, 1);//zoom to original size
-                ReMoveToCenter();   //show bild in center the window             
+                RestoreView();   //show bild in center the window             
             }
         }
 
-        private void ReMoveToCenter()
+        private void RestoreView()
         {
             _translateTransform.X = _centerPoint.X;
             _translateTransform.Y = _centerPoint.Y;
