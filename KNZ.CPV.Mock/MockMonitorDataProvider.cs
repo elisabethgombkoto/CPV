@@ -1,7 +1,9 @@
-﻿using System;
+﻿using KNZ.CPV.Application;
+using KNZ.CPV.Model;
+using System;
 using System.Collections.Generic;
 
-namespace KNZ.CPV
+namespace KNZ.CPV.Mock
 {
     public class MockMonitorDataProvider : IMonitorDataProvider
     {

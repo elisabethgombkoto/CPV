@@ -1,4 +1,4 @@
-﻿namespace KNZ.CPV
+﻿namespace KNZ.CPV.Model
 {
     public class TargetDatas
     {

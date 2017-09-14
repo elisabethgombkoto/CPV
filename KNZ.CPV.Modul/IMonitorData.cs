@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KNZ.CPV
+namespace KNZ.CPV.Modul
 {
     public interface IMonitorData
     {

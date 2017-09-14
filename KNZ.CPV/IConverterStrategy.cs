@@ -1,4 +1,5 @@
-﻿using KNZ.CPV.Shapes;
+﻿using KNZ.CPV.Model;
+using KNZ.CPV.Shapes;
 using System.Collections.Generic;
 
 namespace KNZ.CPV

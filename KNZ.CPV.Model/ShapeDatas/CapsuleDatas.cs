@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KNZ.CPV
+namespace KNZ.CPV.Model
 {
     public class CapsuleDatas
     {

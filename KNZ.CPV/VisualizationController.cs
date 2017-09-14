@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using KNZ.CPV.Shapes;
+using KNZ.CPV.Application;
+using KNZ.CPV.Model;
 
 namespace KNZ.CPV
 {

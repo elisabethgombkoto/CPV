@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace KNZ.CPV
+namespace KNZ.CPV.Model
 {
     public class MonitorData : IMonitorData
     { 

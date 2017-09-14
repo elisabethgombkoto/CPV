@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>KNZ.CPV</RootNamespace>
     <AssemblyName>KNZ.CPV</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,22 +83,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Shapes\IShape.cs" />
-    <Compile Include="ShapeDatas\CapsuleDatas.cs" />
-    <Compile Include="ShapeDatas\CircleDatas .cs" />
     <Compile Include="ConverterStrategy.cs" />
-    <Compile Include="ShapeDatas\RectangleDatas.cs" />
     <Compile Include="IConverterStrategy.cs" />
-    <Compile Include="IMonitorDataProvider.cs" />
-    <Compile Include="IMonitorData.cs" />
-    <Compile Include="ShapeDatas\LineSegmentDatas.cs" />
-    <Compile Include="MonitorData.cs" />
+    <Compile Include="Shapes\IShape.cs" />
     <Compile Include="Shapes\Capsule.cs" />
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="Shapes\AbstractShape.cs" />
     <Compile Include="Shapes\LineSegment.cs" />
     <Compile Include="Shapes\Rectangle.cs" />
-    <Compile Include="ShapeDatas\TargetDatas .cs" />
     <Compile Include="VisualizationController.cs" />
     <Compile Include="VisualizationViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -114,7 +107,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MockMonitorDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -148,6 +140,20 @@
       <Link>pic.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KNZ.CPV.Application\KNZ.CPV.Application.csproj">
+      <Project>{208065d6-7d1f-4684-aaeb-a001e9f43aaf}</Project>
+      <Name>KNZ.CPV.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KNZ.CPV.Mock\KNZ.CPV.Mock.csproj">
+      <Project>{c4f6c489-d555-4197-8d9a-855b77026582}</Project>
+      <Name>KNZ.CPV.Mock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KNZ.CPV.Model\KNZ.CPV.Model.csproj">
+      <Project>{cc78ab1d-0523-4d6b-998d-0c6d01d2d218}</Project>
+      <Name>KNZ.CPV.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
