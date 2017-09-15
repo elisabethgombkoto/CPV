@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KNZ.Plc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\KNZ.SCL\KNZ.SCL.Application\libs\KNZ.Plc.dll</HintPath>
+    </Reference>
+    <Reference Include="KNZ.Plc.Siemens, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\KNZ.SCL\KNZ.SCL.Application\libs\KNZ.Plc.Siemens.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +50,7 @@
   <ItemGroup>
     <Compile Include="MockMonitorDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KNZ.CPV.Application\KNZ.CPV.Application.csproj">
@@ -55,6 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\Cauldron.Interception.dll" />
+    <Content Include="libs\KNZ.Plc.dll" />
+    <Content Include="libs\KNZ.Plc.Mock.dll" />
+    <Content Include="libs\KNZ.Plc.Siemens.dll" />
+    <Content Include="libs\S7.Net.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

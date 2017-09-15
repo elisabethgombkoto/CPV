@@ -64,7 +64,6 @@
     <Compile Include="IMonitorDataProvider.cs" />
     <Compile Include="MonitorDataPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\Cauldron.Interception.dll" />

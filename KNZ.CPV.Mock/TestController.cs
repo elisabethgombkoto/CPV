@@ -1,5 +1,5 @@
-﻿using KNZ.Plc;
-using KNZ.Plc.Mock;
+﻿using KNZ.CPV.Application;
+using KNZ.Plc;
 using KNZ.Plc.Siemens;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KNZ.CPV.Application
+namespace KNZ.CPV.Mock
 {
     public class TestController
     {
